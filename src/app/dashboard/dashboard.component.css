@@ -1,0 +1,7 @@
+.card.overview{display:flex;flex-direction:column;gap:12px}
+.stocks-table{margin-top:8px}
+.stocks-table .symbol{font-weight:700}
+.stocks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
+.small-card{padding:12px;border-radius:8px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);box-shadow:var(--shadow-sm)}
+.kpi{font-size:18px;font-weight:700}
+.table td .chip{font-size:12px}

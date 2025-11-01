@@ -1,0 +1,8 @@
+.sm-overlay{ position:fixed; left:0; right:0; top:0; bottom:0; background:rgba(0,0,0,0.36); z-index:1000 }
+.sm-panel{ position:fixed; right:18px; top:60px; width:360px; background:var(--card-bg); color:var(--fg); border-radius:10px; box-shadow:var(--shadow-md); z-index:1001; overflow:hidden }
+.sm-header{ display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-bottom:1px solid rgba(0,0,0,0.06) }
+.sm-title{ font-weight:700 }
+.sm-close{ background:transparent;border:none;font-size:16px;cursor:pointer }
+.sm-body{ padding:12px }
+.sm-actions{ display:flex; gap:8px; padding:12px; justify-content:flex-end; border-top:1px solid rgba(0,0,0,0.04) }
+.font-sample{ margin-top:8px; padding:8px; border-radius:8px; background:rgba(0,0,0,0.02); display:inline-block }

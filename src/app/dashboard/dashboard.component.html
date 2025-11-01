@@ -1,0 +1,14 @@
+<div class="card">
+  <h2>Overview</h2>
+  <p>Quick stock snapshot</p>
+  <table class="table">
+    <thead><tr><th>Symbol</th><th>Price</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr *ngFor="let s of stocks">
+        <td>{{s.symbol}}</td>
+        <td>{{s.price | number:'1.2-2'}}</td>
+        <td [style.color]="s.change>=0 ? '#10b981' : '#ef4444'">{{s.change}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

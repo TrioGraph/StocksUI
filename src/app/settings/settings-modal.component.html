@@ -1,0 +1,42 @@
+<div class="sm-overlay" (click)="cancel()"></div>
+<div class="sm-panel">
+  <header class="sm-header">
+    <div class="sm-title">Settings</div>
+    <button class="sm-close" (click)="cancel()">✕</button>
+  </header>
+
+  <div class="sm-body">
+    <div class="form-row">
+      <label for="font">Font</label>
+      <select id="font" [(ngModel)]="pendingFont" (change)="previewFont && previewApplyFont(pendingFont)">
+        <option *ngFor="let f of fonts" [value]="f.value">{{f.label}}</option>
+      </select>
+      <div class="font-sample" [ngClass]="'font-'+pendingFont">Aa Bb Cc — The quick brown fox jumps over the lazy dog</div>
+    </div>
+
+    <div class="form-row">
+        <label for="motion">Motion</label>
+        <select id="motion" [(ngModel)]="pendingMotion" (change)="previewMotion && previewApplyMotion(pendingMotion)">
+          <option *ngFor="let m of motions" [value]="m.value">{{m.label}}</option>
+        </select>
+      <div class="row" style="align-items:center;margin-top:8px">
+        <label style="margin-right:8px"><input type="checkbox" [(ngModel)]="previewMotion"> Live preview</label>
+        <label style="margin-left:12px"><input type="checkbox" [(ngModel)]="previewFont"> Live font preview</label>
+      </div>
+    </div>
+      <div class="form-row">
+        <label for="theme">Theme</label>
+        <select id="theme" [(ngModel)]="pendingTheme" (change)="previewTheme && previewApplyTheme(pendingTheme)">
+          <option *ngFor="let t of themes" [value]="t">{{t}}</option>
+        </select>
+        <div style="margin-top:8px">
+          <label style="margin-right:8px"><input type="checkbox" [(ngModel)]="previewTheme"> Live preview</label>
+        </div>
+      </div>
+  </div>
+
+  <footer class="sm-actions">
+    <button class="btn secondary" (click)="cancel()">Cancel</button>
+    <button class="btn" (click)="apply()">Apply</button>
+  </footer>
+</div>

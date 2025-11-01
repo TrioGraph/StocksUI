@@ -1,0 +1,34 @@
+<div class="form-viewer" *ngIf="form">
+  <div *ngFor="let k of keys()" class="form-row">
+    <ng-container [ngSwitch]="controlType(getControl(k))">
+      <div *ngSwitchCase="'group'" class="group">
+        <fieldset>
+          <legend>{{k}}</legend>
+          <app-form-viewer [form]="getControl(k)"></app-form-viewer>
+        </fieldset>
+      </div>
+
+      <div *ngSwitchCase="'array'" class="array">
+        <fieldset>
+          <legend>{{k}} (array)</legend>
+          <div *ngFor="let it of getControl(k).controls; let i = index" class="array-item">
+            <div *ngIf="isGroup(it)">
+              <app-form-viewer [form]="it"></app-form-viewer>
+            </div>
+            <div *ngIf="!isGroup(it)">
+              <label>{{k}}[{{i}}]</label>
+              <input [formControl]="it" />
+            </div>
+            <button type="button" class="btn tiny" (click)="removeArrayItem(k,i)">Remove</button>
+          </div>
+          <button type="button" class="btn" (click)="addArrayItem(k)">Add</button>
+        </fieldset>
+      </div>
+
+      <div *ngSwitchDefault class="control">
+        <label>{{k}}</label>
+        <input [formControl]="getControl(k)" />
+      </div>
+    </ng-container>
+  </div>
+</div>

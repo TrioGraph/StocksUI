@@ -1,0 +1,6 @@
+.form-viewer{display:block}
+.form-row{margin-bottom:10px}
+.form-row label{display:block;font-weight:600;margin-bottom:6px}
+.array-item{padding:8px;border:1px dashed var(--muted);margin-bottom:8px}
+.group fieldset{border:1px solid #e2e8f0;padding:8px}
+.btn.tiny{padding:4px 8px;font-size:12px}

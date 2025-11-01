@@ -1,0 +1,203 @@
+/* CSS Variable based themes */
+:root{
+  --bg: #ffffff;
+  --fg: #111827;
+  --card-bg: #f3f4f6;
+  --accent: #2563eb;
+  --muted: #6b7280;
+  --success: #10b981;
+  --danger: #ef4444;
+  --radius: 10px;
+  --shadow-sm: 0 1px 3px rgba(16,24,40,0.06);
+  --shadow-md: 0 6px 18px rgba(16,24,40,0.08);
+
+  /* font families (can be switched per-theme or via helper classes) */
+  --font-sans: 'Poppins', Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, monospace;
+  /* animation durations controlled by data-motion (overrides below) */
+  --anim-short: .12s;
+  --anim-medium: .36s;
+  --anim-fast: .18s;
+}
+
+/* data-font attribute overrides (persisted by ThemeService) */
+[data-font="sans"]{
+  font-family: var(--font-sans);
+}
+[data-font="serif"]{
+  font-family: var(--font-serif);
+}
+[data-font="mono"]{
+  font-family: var(--font-mono);
+}
+
+/* named font presets for picker (point to loaded Google fonts with fallbacks) */
+[data-font="poppins"]{ font-family: 'Poppins', var(--font-sans); }
+[data-font="inter"]{ font-family: 'Inter', var(--font-sans); }
+[data-font="roboto"]{ font-family: 'Roboto', var(--font-sans); }
+[data-font="source"]{ font-family: 'Source Sans 3', var(--font-sans); }
+[data-font="nunito"]{ font-family: 'Nunito', var(--font-sans); }
+
+[data-theme="dark"]{
+  --bg: #0b1220;
+  --fg: #e6eef8;
+  --card-bg: #131a26;
+  --accent: #60a5fa;
+}
+
+[data-theme="cosmic"]{
+  --bg: #1b0b2e;
+  --fg: #f6e6ff;
+  --card-bg: #2a0f3f;
+  --accent: #ff7ab6;
+}
+
+html,body{
+  height:100%;
+  margin:0;
+  /* use font variable so themes can swap fonts easily */
+  font-family: var(--font-sans);
+  background:var(--bg);
+  color:var(--fg);
+}
+
+.app-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 16px;
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+}
+
+
+.container{padding:20px;max-width:100%;margin:0}
+.card{
+  background:var(--card-bg);
+  padding:20px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-sm);
+  width:100% !important;
+  max-width:none !important;
+  box-sizing:border-box !important;
+}
+
+.btn{
+  padding:10px 14px;
+  border-radius:8px;
+  background:var(--accent);
+  color:white;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+}
+.btn.secondary{
+  background:transparent;color:var(--fg);border:1px solid rgba(0,0,0,0.08)
+}
+
+.table{width:100%;border-collapse:collapse;background:transparent}
+.table th,.table td{padding:12px;border-bottom:1px solid rgba(0,0,0,0.06);text-align:left}
+.table thead th{color:var(--muted);font-weight:600}
+
+.form-row{display:flex;flex-direction:column;margin-bottom:14px}
+.form-row input, .form-row select, .form-row textarea{
+  padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);background:white;color:var(--fg);
+  box-shadow: inset 0 1px 2px rgba(16,24,40,0.02);
+}
+.form-row label{font-size:13px;margin-bottom:6px;color:var(--muted)}
+
+/* nicer cards and header */
+.card.h2{font-size:18px;margin-bottom:8px}
+.muted{color:var(--muted)}
+.positive{color:var(--success);font-weight:600}
+.negative{color:var(--danger);font-weight:600}
+
+/* small utilities */
+.row{display:flex;gap:12px;align-items:center}
+.spacer{flex:1}
+
+/* tables */
+.table .chip{display:inline-block;padding:4px 8px;border-radius:999px;background:rgba(0,0,0,0.04);font-size:12px}
+
+/* responsiveness */
+@media (max-width: 900px){
+  .container{padding:12px}
+  .table th,.table td{padding:10px}
+}
+
+/* --- Font helper classes --- */
+.font-sans{font-family:var(--font-sans) !important}
+.font-serif{font-family:var(--font-serif) !important}
+.font-mono{font-family:var(--font-mono) !important}
+
+/* --- Animations & motion --- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+/* Motion control via data-motion attribute:
+   - full: default durations
+   - reduced: faster/shorter
+   - none: disable animations/transitions
+*/
+[data-motion="reduced"]{
+  --anim-short: .08s;
+  --anim-medium: .18s;
+  --anim-fast: .09s;
+}
+
+[data-motion="none"]{
+  --anim-short: 0s;
+  --anim-medium: 0s;
+  --anim-fast: 0s;
+  animation: none !important;
+  transition: none !important;
+}
+
+/* subtle entrance for cards and gentle hover lift */
+.card{
+  animation: fadeInUp var(--anim-medium) ease both;
+  transition: transform var(--anim-fast) ease, box-shadow var(--anim-fast) ease, background-color var(--anim-fast) ease;
+}
+.card:hover{ transform: translateY(-6px); box-shadow: var(--shadow-md); }
+
+/* buttons */
+.btn{ transition: transform var(--anim-fast) ease, box-shadow var(--anim-fast) ease, background-color var(--anim-short) ease; }
+.btn:hover{ transform: translateY(-2px) scale(1.02); box-shadow: 0 6px 16px rgba(16,24,40,0.06); }
+.btn:active{ transform: translateY(0); }
+
+/* links & nav hover underline */
+.nav-link{ position:relative; display:inline-block; transition: color var(--anim-short) ease; }
+.nav-link::after{ content:''; position:absolute; left:0; right:0; bottom:-4px; height:2px; background:var(--accent); transform:scaleX(0); transform-origin:left center; transition: transform var(--anim-fast) ease; }
+.nav-link:hover::after{ transform:scaleX(1); }
+
+/* subtle focus ring for accessibility */
+:focus{ outline: 3px solid rgba(37,99,235,0.14); outline-offset:2px; }
+
+/* small utility for animated entrances */
+.animated-stagger > *{ animation: fadeInUp var(--anim-medium) ease both; }
+
+/* font sample preview */
+.font-sample{ padding:8px 10px; border-radius:8px; background:rgba(0,0,0,0.02); display:inline-block; margin-top:8px; font-size:14px; }
+
+/* small code/mono styling */
+code, pre{ font-family: var(--font-mono); }
+
+/* global loading overlay */
+.global-loading{ position:fixed; left:0; right:0; top:0; bottom:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.08); z-index:9998 }
+.loader{ display:flex; gap:8px }
+.loader .dot{ width:10px; height:10px; background:var(--accent); border-radius:50%; animation: float 800ms ease-in-out infinite alternate }
+.loader .dot:nth-child(2){ animation-delay:150ms }
+.loader .dot:nth-child(3){ animation-delay:300ms }

@@ -1,0 +1,9 @@
+<div class="card">
+  <h3>Angel Token</h3>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <app-form-viewer [form]="form"></app-form-viewer>
+    <div style="margin-top:12px;display:flex;gap:8px">
+      <button class="btn primary" type="submit">Submit</button>
+    </div>
+  </form>
+</div>

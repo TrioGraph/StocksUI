@@ -1,0 +1,8 @@
+/* login styles - improved visuals */
+.card{
+	max-width:480px;margin:36px auto;padding:28px;background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md)
+}
+.card h3{margin:0 0 12px;font-size:20px}
+.form-row input{width:100%;box-sizing:border-box}
+.btn{width:100%;display:inline-flex;align-items:center;justify-content:center}
+.login-help{margin-top:12px;text-align:center;color:var(--muted);font-size:13px}
